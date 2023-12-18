@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\TableController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,6 +20,8 @@ Route::get('/', function () {
 });
 
 Route::resource('categories', CategoryController::class);
+Route::resource('tables', TableController::class);
+
 
 Auth::routes(['register'=>false,'reset'=>false]);
 
