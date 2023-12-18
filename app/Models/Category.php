@@ -14,4 +14,9 @@ class Category extends Model
     public function menu(){
         return $this->hasMany(Menu::class);
     }
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 }

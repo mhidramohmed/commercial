@@ -3,16 +3,26 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
+
+    public function __construct(){
+         $this->middleware('auth');
+    }
+
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
         //
+        return view('managments.categories.index')
+            ->with(['categories' => Category::paginate(5)]
+        );
     }
 
     /**
@@ -20,7 +30,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('managments.categories.create');
     }
 
     /**
@@ -28,7 +38,24 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $request->validate([
+
+            'title'=>'required',
+        ]);
+
+        $title = $request->title;
+
+
+        Category::create([
+            'title'=>$title,
+            'slug'=>Str::slug($title)
+        ]);
+
+
+        return redirect()->route('categories.index')
+            ->with(['message'=>'Category added successfully']);
+
     }
 
     /**
@@ -44,7 +71,8 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        return view('managments.categories.edit')
+            ->with(['category'=>$category]);
     }
 
     /**
@@ -52,7 +80,22 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        $request->validate([
+
+            'title'=>'required',
+        ]);
+
+        $title = $request->title;
+
+
+        $category->update([
+            'title'=>$title,
+            'slug'=>Str::slug($title)
+        ]);
+
+
+        return redirect()->route('categories.index')
+            ->with(['message'=>'Category updated successfully']);
     }
 
     /**
@@ -60,6 +103,10 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $category->delete();
+
+
+        return redirect()->route('categories.index')
+            ->with(['message'=>'Category deleted successfully']);
     }
 }
