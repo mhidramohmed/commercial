@@ -14,12 +14,12 @@
 
                             <div class="d-flex flex-row justify-content-between align-items-center border-bottom pb-1">
                                 <h3 class="text-secondary">
-                                    <i-fas class="fas fa-chair">
-                                        Tables
+                                    <i-fas class="fas fa-user-gear">
+                                        Serveurs
                                     </i-fas>
                                 </h3>
 
-                                <a href="{{route('tables.create')}}" class="btn btn-primary">
+                                <a href="{{route('serveurs.create')}}" class="btn btn-primary">
                                     <i class="fas fa-plus fa-x2 "></i>
                                 </a>
                             </div>
@@ -30,55 +30,50 @@
                                     <tr>
                                         <th>Id</th>
                                         <th>Name</th>
-                                        <th>Disponible</th>
+                                        <th>Adress</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
 
                                 <tbody>
 
-                                    @foreach ($tables as $table)
+                                    @foreach ($serveurs as $serveur)
                                         <tr>
-                                            <td>{{$table->id}}</td>
-                                            <td>{{$table->name}}</td>
+                                            <td>{{$serveur->id}}</td>
+                                            <td>{{$serveur->name}}</td>
                                             <td>
-                                                @if ($table->status)
-                                                    <span class="badge bg-success">
-                                                        OUI
-                                                    </span>
+                                                @if ($serveur->adress)
+                                                    {{$serveur->adress}}
                                                 @else
-                                                    <span class="badge bg-danger">
-                                                        NO
-                                                    </span>
+                                                    <div class="text-danger">
+                                                        Not Disponible
+                                                    </div>
+
                                                 @endif
                                             </td>
                                             <td class="d-flex flex-row justify-content-center align-items-center">
 
-                                                <a href="{{route('tables.edit',$table->slug)}}" class="btn btn-warning">
+                                                <a href="{{route('serveurs.edit',$serveur->id)}}" class="btn btn-warning">
                                                     <i class="fas fa-edit fa-x2 "></i>
                                                 </a>
-                                                <form id="{{$table->id}}" action="{{route('tables.destroy',$table->slug)}}" method="POST">
+                                                <form id="{{$serveur->id}}" action="{{route('serveurs.destroy',$serveur->id)}}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button class="btn btn-danger"
                                                         onclick="event.preventDefault();
-                                                        if(confirm('Do u want to delet table {{$table->name}}'))
-                                                        document.getElementById({{$table->id }}).submit();
+                                                        if(confirm('Do u want to delet serveur {{$serveur->id}}'))
+                                                        document.getElementById({{$serveur->id }}).submit();
                                                         ">
-
                                                         <i class="fas fa-trash fa-x2"></i>
                                                     </button>
                                                 </form>
-
                                             </td>
                                         </tr>
-
                                     @endforeach
-
                                 </tbody>
                             </table>
-                            <div class="my-3    d-flex flex-row justify-content-center align-items-center ">
-                                    {{$tables->links('pagination::bootstrap-4')}}
+                            <div class="d-flex flex-row justify-content-center align-items-center">
+                                {{$serveurs->links('pagination::bootstrap-4')}}
                             </div>
                         </div>
                     </div>

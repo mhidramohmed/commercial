@@ -14,4 +14,9 @@ class Servant extends Model
     public function sales(){
         return $this->hasMany(Sales::class);
     }
+
+    public function getRouteKeyName()
+    {
+        return 'id';
+    }
 }
