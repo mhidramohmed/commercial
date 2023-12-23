@@ -73,7 +73,7 @@
             </div>
         </nav>
         <div class="row">
-            <div class="col-md-8-mx-auto my-4">
+            <div class="col-md-8 mx-auto my-4">
                 @include('layouts.alert')
             </div>
         </div>
