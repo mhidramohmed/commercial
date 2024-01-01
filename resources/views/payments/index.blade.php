@@ -82,16 +82,13 @@
                             <div class="tab-pane fade" id="{{ $category->slug }}" role="tabpanel"aria-labelledby="pills-home-tab">
                                 <div class="row">
                                     @foreach ($category->menus as $menu)
-                                        @dd($menu)
-
-
-                                        {{-- <div class="col-md-4 mb-2">
+                                        <div class="col-md-4 mb-2">
                                             <div class="card h-100">
                                                 <div class="card-body d-flex flex-colum justify-content-center align-items-center">
                                                     <div class="align-self-end">
                                                         <input type="checkbox" name="menu_id[]" id="menu_id" value="{{ $menu->id }}">
                                                     </div>
-                                                    <img src="{{ asset('MenuImages/' . $menu->image) }}" alt="{{ $menu->title }}" class="img-fluid rounded-circle " width="100" height="100">
+                                                    <img src="{{ asset('MenuImages/'.$menu->image) }}" alt="{{ $menu->title }}" class="img-fluid rounded-circle " width="100" height="100">
                                                     <h5 class="font-weight-bold mt-2">
                                                         {{ $menu->title }}
                                                     </h5>
@@ -100,7 +97,7 @@
                                                     </h5>
                                                 </div>
                                             </div>
-                                        </div> --}}
+                                        </div>
                                     @endforeach
                                 </div>
                             </div>
