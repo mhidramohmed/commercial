@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\SalesController;
@@ -19,8 +20,8 @@ use App\Http\Controllers\CategoryController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/home', function () {
+    return view('managments.categories.index');
 });
 
 Route::resource('categories', CategoryController::class);
@@ -38,4 +39,4 @@ Route::get('payments', [PaymentController::class,'index']);
 
 Auth::routes(['register'=>false,'reset'=>false]);
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

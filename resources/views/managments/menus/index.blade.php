@@ -48,7 +48,7 @@
                                                 <td>{{ $menu->price }}DH</td>
                                                 <td>{{ $menu->category->title }}</td>
                                                 <td>
-                                                    <img src="{{ asset('MenuImages/' . $menu->image) }}"
+                                                    <img src="MenuImages/{{ $menu->image }}"
                                                         alt="{{ $menu->title }}" class="fluid rounded " width="60 "
                                                         height="60">
                                                 </td>

@@ -15,9 +15,8 @@ class PaymentController extends Controller
         return view('payments.index')
             ->with([
                 'tables'=>Table::all(),
-                'categories'=>Category::all(),
+                'menus'=>Menu::all(),
                 'serveurs'=>Servant::all(),
-                'menus'=>Menu::all()
             ]);
     }
 }
