@@ -86,7 +86,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-6 mx-auto">
+                <div class="col-md-6 mt-3 mx-auto">
                     <div class="form-grroup">
                         <select class="form-control" name="server_id" >
                             <option value="" selected disabled>
@@ -95,10 +95,10 @@
 
                             @foreach ($serveurs as $serveur )
                                 <option value="{{$serveur->id}}" >
-                                    {{serveur->name}}
+                                    {{$serveur->name}}
                                 </option>
                             @endforeach
-                            
+
                         </select>
                     </div>
                 </div>

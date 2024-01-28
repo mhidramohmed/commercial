@@ -12,6 +12,8 @@ use PHPUnit\Framework\Attributes\Medium;
 class PaymentController extends Controller
 {
     public function index(){
+        // $serveurs=Servant::all();
+        // return $serveurs;
         return view('payments.index')
             ->with([
                 'tables'=>Table::all(),
