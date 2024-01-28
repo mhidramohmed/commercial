@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('servants', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('adress');
+            $table->string('adress')->nullable();
             $table->timestamps();
         });
     }

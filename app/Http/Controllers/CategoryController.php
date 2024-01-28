@@ -41,7 +41,7 @@ class CategoryController extends Controller
 
         $request->validate([
 
-            'title'=>'required',
+            'title'=>'required|min:3',
         ]);
 
         $title = $request->title;
@@ -54,7 +54,7 @@ class CategoryController extends Controller
 
 
         return redirect()->route('categories.index')
-            ->with(['message'=>'Category added successfully']);
+            ->with(['success'=>'Category added successfully']);
 
     }
 
@@ -107,6 +107,6 @@ class CategoryController extends Controller
 
 
         return redirect()->route('categories.index')
-            ->with(['message'=>'Category deleted successfully']);
+            ->with(['success'=>'Category deleted successfully']);
     }
 }
