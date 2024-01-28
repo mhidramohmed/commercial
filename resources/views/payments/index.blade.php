@@ -88,7 +88,7 @@
             <div class="row">
                 <div class="col-md-6 mt-3 mx-auto">
                     <div class="form-grroup">
-                        <select class="form-control" name="server_id" >
+                        <select class="form-control" name="servant_id" >
                             <option value="" selected disabled>
                                 Serveur
                             </option>
@@ -124,7 +124,7 @@
                     <div class="input-group-prepend">
                        <div class="input-group-text">$</div>
                     </div>
-                    <input type="number" name="total_recevied" class="form-control" placeholder="Total">
+                    <input type="number" name="total_received" class="form-control" placeholder="Total">
                     <div class="input-group-append">
                         <div class="input-group-text">.00</div>
                      </div>
@@ -169,7 +169,7 @@
                 </div>
 
                 <div class="form_group mt-3">
-                    <button onclick="event.preventDefault();document.getElementById('add-sale').submit" class="btn btn-primary">
+                    <button onclick="event.preventDefault();document.getElementById('add-sale').submit()" class="btn btn-primary">
                         Valider
                     </button>
                 </div>

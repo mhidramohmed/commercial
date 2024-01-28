@@ -12,7 +12,7 @@ class Sales extends Model
     protected $fillable=['servant_id','quantity','total_price',
         'total_received','change','payment_type','payment_status'];
 
-    public function menu(){
+    public function menus(){
         return $this->belongsToMany(Menu::class);
     }
 

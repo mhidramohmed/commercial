@@ -11,11 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('menu_sale', function (Blueprint $table) {
+        Schema::create('sales_table', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('menu_id')->constrained();
+            $table->foreignId('table_id')->constrained();
             $table->foreignId('sales_id')->constrained();
-
             $table->timestamps();
         });
     }
@@ -25,8 +24,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('menu_sale', function (Blueprint $table) {
-            $table->dropColumn(['sales_id','menu_id']);
+        Schema::table('sale_table', function (Blueprint $table) {
+            $table->dropColumn(['sales_id','table_id']);
         });
     }
 };
