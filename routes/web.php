@@ -20,7 +20,7 @@ use App\Http\Controllers\CategoryController;
 |
 */
 
-Route::get('/home', function () {
+Route::get('/', function () {
     return view('managments.categories.index');
 });
 

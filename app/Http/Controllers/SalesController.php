@@ -49,7 +49,9 @@ class SalesController extends Controller
         $sale->payment_status = $request->payment_status;
         $sale->payment_type = $request->payment_type;
         $sale->save();
-        // $sale->menus()->sync($request->menu_id);
+
+        $sale->menus()->sync($request->menu_id);
+
         $sale->tables()->sync($request->table_id);
 
         return redirect()->back()->with(['success'=>'Paiment effectu sucessfully']);

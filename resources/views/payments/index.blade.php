@@ -51,6 +51,41 @@
                                                     <i class="fas fa-edit fa-x2"></i>
                                                 </a>
                                             </div>
+                                            <hr>
+                                            @foreach ($table->sales as $sale)
+                                                @if ($sale->created_at >= Carbon\Carbon::today())
+                                                    <div style="border:dashed pink" class="mb-2 mt-2 shadow w-100" id='{{$sale->id}}' >
+                                                        <div class="card">
+                                                            <div class="d-flex flex-column justify-content-center align-items-center">
+                                                                @foreach ($sale->menus()->where('sales_id',$sale->id)->get() as $menu )
+                                                                    <h5 class="font-weigth-bold mt-2">
+                                                                        {{$menu->title}}
+                                                                    </h5>
+                                                                    <span class="text-muted">
+                                                                        {{$menu->price}}DH
+                                                                    </span>
+
+                                                                @endforeach
+                                                                <h5 class="font-weigth-bold mt-2">
+                                                                    <span class="badge badge-danger">
+                                                                        Serveur :{{$sale->servant->name}}
+                                                                    </span>
+                                                                </h5>
+                                                                <h5 class="font-weigth-bold mt-2">
+                                                                    <span class="badge badge-light">
+                                                                        QTe :{{$sale->quantity}}
+                                                                    </span>
+                                                                </h5>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+
+
+
+                                                @endif
+
+                                            @endforeach
                                         </div>
                                     </div>
                                 @endforeach
