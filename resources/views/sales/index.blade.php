@@ -69,10 +69,10 @@
                                                                 {{ $table->name }}
                                                             </span>
                                                         </div>
-                                                    
+
                                                     @endforeach
                                                 </td>
-                                                <td>{{ $sale->servant->name }}DH</td>
+                                                <td>{{ $sale->servant->name }}</td>
                                                 <td>{{ $sale->quantity}}</td>
                                                 <td>{{ $sale->total_price}}</td>
                                                 <td>{{ $sale->payment_type === 'cash' ? 'espace' : "Card"}}</td>
