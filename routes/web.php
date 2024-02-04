@@ -31,7 +31,7 @@ Route::resource('serveurs', ServantController::class);
 Route::resource('menus', MenuController::class);
 Route::resource('sales', SalesController::class);
 
-Route::get('payments', [PaymentController::class,'index']);
+Route::get('payments', [PaymentController::class,'index'])->name('payments');
 
 Route::get('reports', [ReportController::class,'index'])->name('reports.index');
 Route::post('reports/generate', [ReportController::class,'generate'])->name('reports.generate');
@@ -45,4 +45,4 @@ Route::post('reports/export', [ReportController::class,'export'])->name('reports
 
 Auth::routes(['register'=>false,'reset'=>false]);
 
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
