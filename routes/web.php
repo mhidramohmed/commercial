@@ -8,6 +8,7 @@ use App\Http\Controllers\TableController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ServantController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ReportController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,7 +22,7 @@ use App\Http\Controllers\CategoryController;
 */
 
 Route::get('/', function () {
-    return view('managments.categories.index');
+    return view('welcome');
 });
 
 Route::resource('categories', CategoryController::class);
@@ -31,6 +32,11 @@ Route::resource('menus', MenuController::class);
 Route::resource('sales', SalesController::class);
 
 Route::get('payments', [PaymentController::class,'index']);
+
+Route::get('reports', [ReportController::class,'index'])->name('reports.index');
+Route::post('reports/generate', [ReportController::class,'generate'])->name('reports.generate');
+Route::post('reports/export', [ReportController::class,'export'])->name('reports.export');
+
 
 
 
