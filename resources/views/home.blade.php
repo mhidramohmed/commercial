@@ -5,16 +5,21 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
-
                 <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
+                    <div class="row">
+                        <div class="col-sm-4 d-flex flex-column align-items-center justify-content-center">
+                            <i class="fa fa-cog fa-5x text-danger"></i>
+                            <a href="{{route('categories.index')}}" >Gestoin</a>
                         </div>
-                    @endif
-
-                    {{ __('You are logged in!') }}
+                        <div class="col-sm-4 d-flex flex-column align-items-center justify-content-center">
+                            <i class="fa fa-shopping-bag fa-5x text-success"></i>
+                            <a href="{{route('payments')}}">Sales</a>
+                        </div>
+                        <div class="col-sm-4 d-flex flex-column align-items-center justify-content-center">
+                            <i class="fa fa-clipboard-list fa-5x text-info"></i>
+                            <a href="{{route('reports.index')}}">Rapports</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

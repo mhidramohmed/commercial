@@ -35,39 +35,47 @@
                                 </thead>
 
                                 <tbody>
+                                    @isset($caregories)
+                                        @foreach ($categories as $category)
+                                            <tr>
+                                                <td>{{$category->id}}</td>
+                                                <td>{{$category->title}}</td>
+                                                <td class="d-flex flex-row justify-content-center align-items-center">
 
-                                    @foreach ($categories as $category)
-                                        <tr>
-                                           <td>{{$category->id}}</td>
-                                        <td>{{$category->title}}</td>
-                                        <td class="d-flex flex-row justify-content-center align-items-center">
+                                                    <a href="{{route('categories.edit',$category->slug)}}" class="btn btn-warning">
+                                                        <i class="fas fa-edit fa-x2 "></i>
+                                                    </a>
+                                                    <form id="{{$category->id}}" action="{{route('categories.destroy',$category->slug)}}" method="POST">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button class="btn btn-danger"
+                                                            onclick="event.preventDefault();
+                                                            if(confirm('Do u want to delet Category {{$category->title}}'))
+                                                            document.getElementById({{$category->id }}).submit();
+                                                            ">
 
-                                            <a href="{{route('categories.edit',$category->slug)}}" class="btn btn-warning">
-                                                <i class="fas fa-edit fa-x2 "></i>
-                                            </a>
-                                            <form id="{{$category->id}}" action="{{route('categories.destroy',$category->slug)}}" method="POST">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button class="btn btn-danger"
-                                                    onclick="event.preventDefault();
-                                                    if(confirm('Do u want to delet Category {{$category->title}}'))
-                                                    document.getElementById({{$category->id }}).submit();
-                                                    ">
+                                                            <i class="fas fa-trash fa-x2"></i>
+                                                        </button>
+                                                    </form>
 
-                                                    <i class="fas fa-trash fa-x2"></i>
-                                                </button>
-                                            </form>
+                                                </td>
+                                            </tr>
 
-                                        </td>
-                                        </tr>
+                                        @endforeach
+                                    @endisset
 
-                                    @endforeach
+
 
                                 </tbody>
                             </table>
-                            <div class="d-flex flex-row justify-content-center align-items-center">
-                                {{$categories->links('pagination::bootstrap-4')}}
-                        </div>
+
+                            @isset($categories)
+                                <div class="d-flex flex-row justify-content-center align-items-center">
+                                    {{$categories->links('pagination::bootstrap-4')}}
+                                </div>
+                            @endisset
+
+
                         </div>
                     </div>
                 </div>

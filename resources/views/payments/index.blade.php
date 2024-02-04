@@ -51,6 +51,88 @@
                                                     <i class="fas fa-edit fa-x2"></i>
                                                 </a>
                                             </div>
+                                            <hr>
+                                            @foreach ($table->sales as $sale)
+                                                @if ($sale->created_at >= Carbon\Carbon::today())
+                                                    <div style="border:dashed pink" class="mb-2 mt-2 shadow w-100" id='{{$sale->id}}' >
+                                                        <div class="card ">
+                                                            <div class= "bg-secondary d-flex flex-column justify-content-center align-items-center">
+                                                                @foreach ($sale->menus()->where('sales_id',$sale->id)->get() as $menu )
+                                                                    <h5 class="font-weight-bold mt-2">
+                                                                        {{$menu->title}}
+                                                                    </h5>
+                                                                    <span class="text-muted">
+                                                                        {{$menu->price}}DH
+                                                                    </span>
+                                                                @endforeach
+                                                                {{-- @dd($sale->servant->name) --}}
+                                                                <h5 class="font-weight-bold mt-2">
+                                                                    <span class="badge badge-danger">
+                                                                        Serveur :{{$sale->servant->name}}
+                                                                    </span>
+                                                                </h5>
+                                                                <h5 class="font-weight-bold mt-2">
+                                                                    <span class="badge badge-light">
+                                                                        QTe :{{$sale->quantity}}
+                                                                    </span>
+                                                                </h5>
+                                                                <h5 class="font-weight-bold mt-2">
+                                                                    <span class="badge badge-light">
+                                                                        Total Price :{{$sale->total_price}}
+                                                                    </span>
+                                                                </h5>
+                                                                <h5 class="font-weight-bold mt-2">
+                                                                    <span class="badge badge-light">
+                                                                        total Received :{{$sale->total_received}}
+                                                                    </span>
+                                                                </h5>
+                                                                <h5 class="font-weight-bold mt-2">
+                                                                    <span class="badge badge-light">
+                                                                        Rest :{{$sale->change}}
+                                                                    </span>
+                                                                </h5>
+                                                                <h5 class="font-weight-bold mt-2">
+                                                                    <span class="badge badge-light">
+                                                                        Payment Status :{{$sale->payment_status}}
+                                                                    </span>
+                                                                </h5>
+                                                                <h5 class="font-weight-bold mt-2">
+                                                                    <span class="badge badge-light">
+                                                                        Payment Type :{{$sale->payment_type}}
+                                                                    </span>
+                                                                </h5>
+
+                                                                <div class= " d-flex flex-column justify-content-center align-items-center">
+                                                                    <span class="font-weight-bold">
+                                                                        Restaurant XXXXXXX
+                                                                    </span>
+                                                                    <span>
+                                                                        Localisation
+                                                                    </span>
+                                                                    <span>
+                                                                        nemero telephone
+                                                                    </span>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="mt-2 d-flex justify-contnet-center gap-2">
+                                                        <a href="{{route('sales.edit',$sale->id)}}" class="btn btn-sm btn-warning">
+                                                            <i class="fa fa-edit "></i>
+                                                        </a>
+                                                        <a href="#" target="_blank" class="btn btn-sm btn-info" onclick="print({{$sale->id}})">
+                                                            <i class="fa fa-print"></i>
+                                                        </a>
+                                                    </div>
+                                                    <br>
+
+                                                @endif
+
+
+                                            @endforeach
                                         </div>
                                     </div>
                                 @endforeach
@@ -88,7 +170,7 @@
             <div class="row">
                 <div class="col-md-6 mt-3 mx-auto">
                     <div class="form-grroup">
-                        <select class="form-control" name="server_id" >
+                        <select class="form-control" name="servant_id" >
                             <option value="" selected disabled>
                                 Serveur
                             </option>
@@ -101,78 +183,81 @@
 
                         </select>
                     </div>
-                </div>
 
-                <div class="input-group mt-3">
-                    <div class="input-group-prepend">
-                       <div class="input-group-text">QTE</div>
+                    <div class="input-group mt-3">
+                        <div class="input-group-prepend">
+                           <div class="input-group-text">QTE</div>
+                        </div>
+                        <input type="number" name="quantity" class="form-control" placeholder="QTE">
                     </div>
-                    <input type="number" name="quantity" class="form-control" placeholder="QTE">
-                </div>
 
-                <div class="input-group mt-3">
-                    <div class="input-group-prepend">
-                       <div class="input-group-text">$</div>
+                    <div class="input-group mt-3">
+                        <div class="input-group-prepend">
+                           <div class="input-group-text">$</div>
+                        </div>
+                        <input type="number" name="total_price" class="form-control" placeholder="price">
+                        <div class="input-group-append">
+                            <div class="input-group-text">.00</div>
+                         </div>
                     </div>
-                    <input type="number" name="total_price" class="form-control" placeholder="price">
-                    <div class="input-group-append">
-                        <div class="input-group-text">.00</div>
-                     </div>
-                </div>
 
-                <div class="input-group mt-3">
-                    <div class="input-group-prepend">
-                       <div class="input-group-text">$</div>
+                    <div class="input-group mt-3">
+                        <div class="input-group-prepend">
+                           <div class="input-group-text">$</div>
+                        </div>
+                        <input type="number" name="total_received" class="form-control" placeholder="Total">
+                        <div class="input-group-append">
+                            <div class="input-group-text">.00</div>
+                         </div>
                     </div>
-                    <input type="number" name="total_recevied" class="form-control" placeholder="Total">
-                    <div class="input-group-append">
-                        <div class="input-group-text">.00</div>
-                     </div>
-                </div>
 
-                <div class="input-group mt-3">
-                    <div class="input-group-prepend">
-                       <div class="input-group-text">$</div>
+                    <div class="input-group mt-3">
+                        <div class="input-group-prepend">
+                           <div class="input-group-text">$</div>
+                        </div>
+                        <input type="number" name="change" class="form-control" placeholder="rest">
+                        <div class="input-group-append">
+                            <div class="input-group-text">.00</div>
+                         </div>
                     </div>
-                    <input type="number" name="change" class="form-control" placeholder="rest">
-                    <div class="input-group-append">
-                        <div class="input-group-text">.00</div>
-                     </div>
+
+                    <div class="form-grroup mt-3">
+                        <select class="form-control" name="payment_type" >
+                            <option value="" selected disabled>
+                                Type de paiement
+                            </option>
+                            <option value="cash" >
+                                Espece
+                            </option>
+                            <option value="card" >
+                                Carte bancaire
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="form-grroup mt-3">
+                        <select class="form-control" name="payment_status" >
+                            <option value="" selected disabled>
+                                Etat de paiement
+                            </option>
+                            <option value="paid" >
+                                Paid
+                            </option>
+                            <option value="unpaid" >
+                                Impaye
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="form_group mt-3 mx-auto">
+                        <button onclick="event.preventDefault();document.getElementById('add-sale').submit()" class="btn btn-primary">
+                            Valider
+                        </button>
+                    </div>
+
                 </div>
 
-                <div class="form-grroup mt-3">
-                    <select class="form-control" name="payment_type" >
-                        <option value="" selected disabled>
-                            Type de paiement
-                        </option>
-                        <option value="cash" >
-                            Espece
-                        </option>
-                        <option value="card" >
-                            Carte bancaire
-                        </option>
-                    </select>
-                </div>
 
-                <div class="form-grroup mt-3">
-                    <select class="form-control" name="payment_status" >
-                        <option value="" selected disabled>
-                            Etat de paiement
-                        </option>
-                        <option value="paid" >
-                            Paid
-                        </option>
-                        <option value="unpaid" >
-                            Impaye
-                        </option>
-                    </select>
-                </div>
-
-                <div class="form_group mt-3">
-                    <button onclick="event.preventDefault();document.getElementById('add-sale').submit" class="btn btn-primary">
-                        Valider
-                    </button>
-                </div>
 
             </div>
 
@@ -180,4 +265,18 @@
         </form>
 
     </div>
+@endsection
+
+@section('js')
+    <script>
+        function print(e){
+
+            const page = document.body.innerHTML;
+
+            const content = document.getElementById(e).innerHTML;
+            document.body.innerHTML = content;
+            window.print();
+            document.body.innerHTML = page;
+        }
+    </script>
 @endsection
